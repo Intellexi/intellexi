@@ -1,7 +1,8 @@
 # Intellexi — intellexi.com
 
-**Est. 2001 as a multimedia & communications studio. Reborn 2026 as an AI automation
-and custom software studio — the technology arm of [Rockstar Consulting](https://www.rockstar.one/).**
+**Est. 2001 as a multimedia & communications studio. Reborn 2026 as the
+AI & Innovation Division of [Rockstar Consulting](https://www.rockstar.one/) —
+AI · Software Development · Automation · Digital Transformation.**
 
 *intellexi* — Latin, perfect tense of *intellegere*: **"I have understood."**
 The original tagline, "Be Understood," is still the promise.

@@ -462,6 +462,27 @@ h3,
   color: var(--text-faint);
 }
 
+/* Disciplines — the division's four practices */
+.disciplines {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.4rem 0.85rem;
+  font-family: var(--mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.disciplines .dsep {
+  letter-spacing: 0;
+}
+.disciplines--footer {
+  margin-top: 1.1rem;
+  font-size: 0.72rem;
+  color: var(--text-faint);
+}
+
 /* Dictionary entry — the name, defined */
 .defn {
   font-family: var(--serif);
@@ -878,6 +899,7 @@ h3,
   margin-top: 2.4rem;
 }
 .hero-defn {
+  margin-top: 2.4rem;
   margin-bottom: 2.2rem;
   font-size: var(--step--1);
 }
