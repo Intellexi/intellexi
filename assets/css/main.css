@@ -66,7 +66,7 @@
   /* Ivory — the voice */
   --text: #eae6da;
   --text-dim: #a39f94;
-  --text-faint: #6d6a63;
+  --text-faint: #8a8780; /* ≥ 4.5:1 on --ink-0 */
 
   /* Heritage tints — the four section colors of intellexi.com, 2001.
      Blue (home) · Gold (profile) · Green (expertise) · Coral (clientele) */
@@ -256,6 +256,13 @@ svg {
 }
 .site-nav .btn {
   margin-left: 0.35rem;
+}
+/* .site-nav a would otherwise out-specify .btn--solid and dim the CTA text */
+.site-nav a.btn--solid {
+  color: var(--ink-0);
+}
+.site-nav a.btn--solid:hover {
+  color: var(--ink-0);
 }
 
 .nav-toggle {

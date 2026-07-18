@@ -63,5 +63,7 @@ uses root-absolute links and assumes a custom domain / domain root.
 - **Founding-era details** — Act I facts (clientele, taglines, quotes) come from
   Internet Archive snapshots of intellexi.com (2001–2004). Add or correct
   details on `story/index.html` as more of the original material is recovered.
-- **Social preview image** — `og:` tags are in place but there is no raster
-  `og:image` yet; add a 1200×630 PNG when brand assets are finalized.
+- **Domain in absolute URLs** — `og:image` and the JSON-LD block reference
+  `https://intellexi.com/...` (Open Graph requires absolute URLs). If the site
+  launches on a different domain, update those URLs in all three pages'
+  `<head>`. The preview image itself is `assets/img/og.png` (1200×630).
