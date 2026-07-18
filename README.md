@@ -59,6 +59,11 @@ uses root-absolute links and assumes a custom domain / domain root.
 
 ## Things to confirm before launch
 
+- **Founder photo** — the founder section expects a square portrait at
+  `assets/img/karlo-nisce.jpg` (Karlo's circular guitar portrait). Drop the
+  file in and it appears inside the orbit graphic automatically; until then
+  the section falls back to the brand mark. Any square image ≥ 720×720 works.
+
 - **Contact email** — the site uses `info@intellexi.io` to match the planned
   domain. Update in all three pages + footers once the mailbox exists.
 - **Founding-era details** — Act I facts (clientele, taglines, quotes) come from
