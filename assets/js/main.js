@@ -87,6 +87,67 @@
     window.addEventListener("load", sweep);
   }
 
+  /* Headline decode ---------------------------------------------------------
+     "Be understood." resolves out of noise, character by character —
+     understanding emerging from static. */
+
+  var decodeTarget = document.querySelector("[data-decode]");
+  if (decodeTarget && !reducedMotion) {
+    var finalText = decodeTarget.textContent;
+    decodeTarget.setAttribute("aria-label", finalText);
+    var holder = document.createElement("span");
+    holder.setAttribute("aria-hidden", "true");
+    decodeTarget.textContent = "";
+    decodeTarget.appendChild(holder);
+
+    var GLYPHS = "intelexi{}<>/·»abcdehmorsu";
+    var chars = finalText.split("").map(function (ch, i) {
+      var span = document.createElement("span");
+      span.className = "glyph";
+      var still = ch === " " || ch === "." || ch === "\n";
+      span.textContent = still ? ch : GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+      if (!still) span.classList.add("is-noise");
+      holder.appendChild(span);
+      return {
+        el: span,
+        ch: ch,
+        still: still,
+        lockAt: 420 + i * 52 + Math.random() * 160
+      };
+    });
+
+    var decodeStart = performance.now();
+    (function tick(now) {
+      var pending = false;
+      var elapsed = now - decodeStart;
+      chars.forEach(function (c) {
+        if (c.still || !c.el.classList.contains("is-noise")) return;
+        if (elapsed >= c.lockAt) {
+          c.el.textContent = c.ch;
+          c.el.classList.remove("is-noise");
+        } else {
+          if (Math.random() < 0.35) {
+            c.el.textContent = GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+          }
+          pending = true;
+        }
+      });
+      if (pending) requestAnimationFrame(tick);
+    })(decodeStart);
+  }
+
+  /* Card spotlight ----------------------------------------------------------- */
+
+  if (!reducedMotion) {
+    document.querySelectorAll(".card").forEach(function (card) {
+      card.addEventListener("pointermove", function (e) {
+        var rect = card.getBoundingClientRect();
+        card.style.setProperty("--mx", e.clientX - rect.left + "px");
+        card.style.setProperty("--my", e.clientY - rect.top + "px");
+      });
+    });
+  }
+
   /* Footer year ------------------------------------------------------------ */
 
   var year = document.getElementById("year");
@@ -110,6 +171,7 @@
   var W = 0;
   var H = 0;
   var nodes = [];
+  var pulses = [];
   var pointer = { x: -9999, y: -9999 };
   var LINK_DIST = 130;
   var running = true;
@@ -197,10 +259,76 @@
       ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
       ctx.fill();
     }
+
+    /* Signal pulses — a spark of understanding travels a thread */
+    if (pulses.length < 6 && Math.random() < 0.03 && nodes.length > 1) {
+      a = nodes[Math.floor(Math.random() * nodes.length)];
+      var best = null;
+      for (j = 0; j < nodes.length; j++) {
+        b = nodes[j];
+        if (b === a) continue;
+        var ddx = a.x - b.x;
+        var ddy = a.y - b.y;
+        if (ddx * ddx + ddy * ddy < LINK_DIST * LINK_DIST) {
+          best = b;
+          break;
+        }
+      }
+      if (best) pulses.push({ a: a, b: best, t: 0 });
+    }
+    for (i = pulses.length - 1; i >= 0; i--) {
+      var p = pulses[i];
+      p.t += 0.022;
+      if (p.t >= 1) {
+        pulses.splice(i, 1);
+        continue;
+      }
+      var px = p.a.x + (p.b.x - p.a.x) * p.t;
+      var py = p.a.y + (p.b.y - p.a.y) * p.t;
+      var fade = Math.sin(p.t * Math.PI);
+      ctx.globalAlpha = fade * 0.35;
+      ctx.beginPath();
+      ctx.moveTo(p.a.x, p.a.y);
+      ctx.lineTo(p.b.x, p.b.y);
+      ctx.stroke();
+      ctx.globalAlpha = fade * 0.9;
+      ctx.beginPath();
+      ctx.arc(px, py, 2.1, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = fade * 0.25;
+      ctx.beginPath();
+      ctx.arc(px, py, 5.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
     ctx.globalAlpha = 1;
 
     requestAnimationFrame(frame);
   }
+
+  /* Hero parallax — content drifts and settles as you leave the fold */
+  var heroSection = mount.closest(".hero");
+  var heroContent = heroSection.querySelector(".container");
+  var parallaxQueued = false;
+  function parallax() {
+    parallaxQueued = false;
+    var y = window.scrollY;
+    var h = heroSection.offsetHeight || 1;
+    if (y < h) {
+      heroContent.style.transform = "translateY(" + y * 0.16 + "px)";
+      heroContent.style.opacity = String(Math.max(0, 1 - y / (h * 0.85)));
+      mount.style.opacity = String(Math.max(0, 1 - y / h));
+    }
+  }
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (!parallaxQueued) {
+        parallaxQueued = true;
+        requestAnimationFrame(parallax);
+      }
+    },
+    { passive: true }
+  );
 
   mount.closest(".hero").addEventListener("pointermove", function (e) {
     var rect = mount.getBoundingClientRect();

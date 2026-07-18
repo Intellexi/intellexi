@@ -742,6 +742,81 @@ h3,
   max-width: 56rem;
 }
 
+/* Heritage marquee — artifacts of 2001 drifting past */
+.marquee {
+  border-block: 1px solid var(--line);
+  padding-block: 1.05rem;
+  overflow: hidden;
+  background: var(--ink-1);
+}
+.marquee__track {
+  display: flex;
+  gap: 3.5rem;
+  width: max-content;
+  animation: marquee-drift 80s linear infinite;
+}
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+.marquee__group {
+  display: flex;
+  gap: 3.5rem;
+  align-items: baseline;
+  flex: none;
+}
+.marquee .tok {
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.marquee .tok--serif {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text-dim);
+}
+.marquee .tok--blue { color: var(--blue-bright); }
+.marquee .tok--gold { color: var(--gold-bright); }
+.marquee .tok--green { color: var(--green-bright); }
+.marquee .tok--coral { color: var(--coral-bright); }
+@keyframes marquee-drift {
+  to {
+    transform: translateX(calc(-50% - 1.75rem));
+  }
+}
+
+/* Card spotlight — the tint follows the cursor */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  background: radial-gradient(
+    230px 230px at var(--mx, 50%) var(--my, 50%),
+    color-mix(in srgb, var(--card-accent) 11%, transparent),
+    transparent 72%
+  );
+}
+.card:hover::after {
+  opacity: 1;
+}
+
+/* Decode — headline resolving out of noise */
+[data-decode] .glyph {
+  display: inline;
+}
+[data-decode] .glyph.is-noise {
+  color: var(--accent-bright);
+  opacity: 0.75;
+}
+
 /* Scanline texture — memory of the duotone photo banners */
 .scanlines {
   position: relative;
@@ -962,6 +1037,12 @@ h3,
   .btn .chev,
   .link-arrow .chev {
     transition: none;
+  }
+  .marquee__track {
+    animation: none;
+  }
+  .card::after {
+    display: none;
   }
 }
 

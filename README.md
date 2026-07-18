@@ -58,12 +58,14 @@ uses root-absolute links and assumes a custom domain / domain root.
 
 ## Things to confirm before launch
 
-- **Contact email** — the site uses `info@intellexi.com` (the original 2001
-  address). Update in all three pages + footers if the domain/mailbox differs.
+- **Contact email** — the site uses `info@intellexi.io` to match the planned
+  domain. Update in all three pages + footers once the mailbox exists.
 - **Founding-era details** — Act I facts (clientele, taglines, quotes) come from
   Internet Archive snapshots of intellexi.com (2001–2004). Add or correct
   details on `story/index.html` as more of the original material is recovered.
 - **Domain in absolute URLs** — `og:image` and the JSON-LD block reference
-  `https://intellexi.com/...` (Open Graph requires absolute URLs). If the site
+  `https://intellexi.io/...` (Open Graph requires absolute URLs). If the site
   launches on a different domain, update those URLs in all three pages'
   `<head>`. The preview image itself is `assets/img/og.png` (1200×630).
+  References to `intellexi.com` in body copy are historical citations of the
+  2001 site and should stay.
