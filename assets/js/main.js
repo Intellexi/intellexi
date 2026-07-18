@@ -178,7 +178,7 @@
 
   function accentColor() {
     var v = getComputedStyle(document.documentElement).getPropertyValue("--blue-bright").trim();
-    return v || "#8fa2ff";
+    return v || "#79b4ff";
   }
   var ACCENT = accentColor();
 

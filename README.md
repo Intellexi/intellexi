@@ -1,6 +1,6 @@
-# Intellexi — intellexi.com
+# Intellexi — intellexi.io
 
-**Est. 2001 as a multimedia & communications studio. Reborn 2026 as the
+**Est. 2000 as a multimedia & communications studio. Reborn 2026 as the
 AI & Innovation Division of [Rockstar Consulting](https://www.rockstar.one/) —
 AI · Software Development · Automation · Digital Transformation.**
 
@@ -22,7 +22,7 @@ python3 -m http.server 8000
 ```
 index.html               Home — hero, capabilities, method, principles, heritage, contact
 capabilities/index.html  What we build, engagement models
-story/index.html         The brand history: Act I (2001), the interim, Act II (2026)
+story/index.html         The brand history: Act I (2000), the interim, Act II (2026)
 404.html                 Not-found page (root-absolute links; expects deployment at a domain root)
 assets/
   css/main.css           The whole design system, token-driven (see below)

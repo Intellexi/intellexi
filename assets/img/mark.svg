@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" aria-hidden="true">
   <!-- The Intellexi figure, 2026 — the 2001 "person as a lowercase i,"
        sharpened: diamond head, forward italic shear, a signal cut through the body. -->
-  <polygon points="40,4 48,12 40,20 32,12" fill="#6b81f7"/>
+  <polygon points="40,4 48,12 40,20 32,12" fill="#3f8cff"/>
   <polygon points="29,26 43,26 39.9,40 25.9,40" fill="currentColor"/>
   <polygon points="25,44 39,44 35,62 21,62" fill="currentColor"/>
 </svg>
